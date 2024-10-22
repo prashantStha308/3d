@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 3D Anim </title>
+    
+    <style>
+
+        body{
+            background-color: #0f0f0f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100dvh;
+        }
+        .container{
+            width: 400px;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
+            perspective: 400px;
+        }
+        .card{
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            font-size: 2rem;
+            border: 1px solid white;
+            color: white;
+            animation: card-turn linear infinite 3s;
+            transition: all 0.3s ease-in-out;
+        }
+
+
+        .card-front{
+            width: 100px;
+            height: 100px;
+            background-color: rgb(103, 103, 192);
+            z-index: 2;
+        }
+
+        .container:hover .card-front{
+            transform: rotateY(90deg) translateZ(45px);
+        }
+
+        .container:hover .card-middle{
+            transform: rotateY(85deg) translateZ(0px);
+        }
+        .container:hover .card-back{
+            transform: rotateY(90deg) translateZ(-45px);
+        }
+
+        .card-middle{
+            width: 150px;
+            height: 150px;
+            background-color: purple;
+            z-index: 1;
+        }
+        .card-back{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            z-index: -1;
+        }
+
+        .cube-container{
+            padding: 40px;
+            position: relative;
+            perspective: 1000px;
+      
+        }
+        .cube{
+            position: relative; 
+            transform-style: preserve-3d;
+            width: 200px;
+            height: 200px;
+            animation: box-rotate 5s linear infinite;
+        }
+
+                
+        @keyframes box-rotate {
+            from{
+                transform: rotate3d(0, 0, 0, 0);
+            }
+            to {
+                transform: rotate3d(1, 1, 0, 360deg);
+            }
+        }
+
+        .face{
+            background-color: rgb(228, 77, 140);
+            opacity: 0.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            color: white;
+            font-size: 2rem;
+            border: 1px solid white;
+        }
+
+        .back{
+            transform: translateZ(-150px);
+        }
+        .left{
+            transform: rotateY(-90deg) translateX(-75px) translateZ(75px);
+        }
+        .right{
+            transform: rotateY(90deg) translateX(75px) translateZ(75px);
+        }
+        .top{
+            transform: rotateX(90deg) translateZ(75px) translateY(-75px);
+        }
+        .bottom{
+            transform: rotateX(90deg) translateZ(-75px) translateY(-75px);
+            /* opacity: 1;
+            background-color: red; */
+        }
+
+    </style>
+    
+</head>
+<body>
+    
+    <div class="cube-container">
+        <div class="cube">
+            <div class="face front">Front</div>
+            <div class="face back">Back</div>
+            <div class="face left">Left</div>
+            <div class="face right">Right</div>
+            <div class="face top">Top</div>
+            <div class="face bottom"> Bottom </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card card-front"> Front </div>
+        <div class="card card-middle"> Middle </div>
+        <div class="card card-back"> Back </div>
+    </div>
+
+</body>
+</html>
