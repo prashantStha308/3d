@@ -8,7 +8,7 @@
     <style>
 
         body{
-            background-color: #0f0f0f;
+            background-color: #e7e7e7;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -121,9 +121,67 @@
         }
         .bottom{
             transform: rotateX(90deg) translateZ(-75px) translateY(-75px);
-            /* opacity: 1;
-            background-color: red; */
         }
+
+        .tri-container{
+            width: 200px;
+            height: 200px;
+            perspective: 1000px;
+        }
+
+        .triangle{
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            transform: rotateY(326deg) rotateX(2deg) rotateZ(359deg);
+            animation: triangle-turn 5s linear infinite;
+        }
+
+        @keyframes triangle-turn{
+            from {
+                transform: rotateY(0) rotateX(30deg) rotateZ(30deg);
+            }
+            to {
+                transform: rotateY(360deg) rotateX(30deg) rotateZ(30deg);
+            }
+        }
+
+        .tri{
+            width: 0;
+            height: 0;
+            position: absolute;
+            opacity: 0.7;
+            border: 100px solid transparent;
+            border-bottom: 200px solid red;
+            border-top: 0px;
+        }
+
+        .tri-front{
+            transform: rotateX(30deg);
+            transform-origin: 0 0;
+        }
+        .tri-back{
+            transform-origin: 100px 0;
+            transform: rotateY(90deg) rotateX(-30deg);
+
+        }
+        .tri-left{
+            transform-origin: 100px 0;
+            transform: rotateY(270deg) rotateX(-30deg);
+        }
+        .tri-right{
+            transform-origin: 100px 0;
+            transform: rotateY(0) rotateX(-30deg);
+        }
+        .tri-bottom{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: translateY(73px) rotateX(90deg);
+            border: 0;
+        }
+
 
     </style>
     
@@ -145,6 +203,16 @@
         <div class="card card-front"> Front </div>
         <div class="card card-middle"> Middle </div>
         <div class="card card-back"> Back </div>
+    </div>
+
+    <div class="tri-container">
+        <div class="triangle">
+            <div class="tri tri-front"></div>
+            <div class="tri tri-back"></div>
+            <div class="tri tri-left"></div>
+            <div class="tri tri-right"></div>
+            <div class="tri tri-bottom"></div>
+        </div>
     </div>
 
 </body>
